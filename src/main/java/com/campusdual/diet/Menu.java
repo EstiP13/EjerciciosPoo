@@ -30,7 +30,9 @@ public class Menu {
             System.out.println("1. Crear/reiniciar dieta");
             System.out.println("2. Mostrar información");
             System.out.println("3. Agregar alimento");
-            System.out.println("4. Salir");
+            System.out.println("4. Mostrar lista de alimentos disponibles");
+            System.out.println("5. Editar dieta");
+            System.out.println("6. Salir");
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
