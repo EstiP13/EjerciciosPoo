@@ -103,4 +103,24 @@ public class Diet {
     public Integer getTotalProteins() {
         return totalProteins;
     }
+
+    // Máximo de calorías permitidas en la dieta
+    public Integer getMaxCalories() {
+        return maxCalories;
+    }
+
+    // Máximo de grasas permitidas en la dieta
+    public Integer getMaxFats() {
+        return maxFats;
+    }
+
+    // Máximo de carbohidratos permitidos en la dieta
+    public Integer getMaxCarbs() {
+        return maxCarbs;
+    }
+
+    // Máximo de proteínas permitidas en la dieta
+    public Integer getMaxProtein() {
+        return maxProtein;
+    }
 }
