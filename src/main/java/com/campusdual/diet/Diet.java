@@ -72,7 +72,7 @@ public class Diet {
         }
     }
 
-    // Método para gregar alimento y cantidad en gramos a la dieta
+    // Método para agregar alimento y cantidad en gramos a la dieta
     public void addFood(com.campusdual.diet.Food food, int grams) {
         if (totalCalories + (food.getCalories(grams)) > maxCalories) {
             System.out.println("Error: Ha superado el límite de calorías.");
@@ -123,4 +123,23 @@ public class Diet {
     public Integer getMaxProtein() {
         return maxProtein;
     }
+
+    // Métodos setter para actualizar los límites de calorías, grasas, carbohidratos y proteínas
+    public void setMaxCalories(Integer maxCalories) {
+        this.maxCalories = maxCalories;
+    }
+
+    public void setMaxFats(Integer maxFats) {
+        this.maxFats = maxFats;
+    }
+
+    public void setMaxCarbs(Integer maxCarbs) {
+        this.maxCarbs = maxCarbs;
+    }
+
+    public void setMaxProtein(Integer maxProtein) {
+        this.maxProtein = maxProtein;
+    }
+
+
 }

@@ -107,6 +107,44 @@ public class Menu {
                 default:
                     System.out.println("Opción no válida.");
                     break;
+                case 5:
+                    if (dieta != null) {
+                        // Agregar lógica para editar la dieta aquí
+                        System.out.println("Editar dieta:");
+                        System.out.println("a. Editar límite de calorías");
+                        System.out.println("b. Editar límite de grasas, carbohidratos y proteínas");
+                        System.out.print("Seleccione una opción: ");
+                        char editarDietaOpcion = scanner.nextLine().charAt(0);
+                        switch (editarDietaOpcion) {
+                            case 'a':
+                                System.out.print("Ingrese el nuevo límite de calorías: ");
+                                int nuevoMaxCalories = scanner.nextInt();
+                                scanner.nextLine(); // Consumir la línea en blanco
+                                dieta.setMaxCalories(nuevoMaxCalories);
+                                break;
+                            case 'b':
+                                System.out.print("Ingrese el nuevo límite de grasas: ");
+                                int nuevoMaxFats = scanner.nextInt();
+                                System.out.print("Ingrese el nuevo límite de carbohidratos: ");
+                                int nuevoMaxCarbs = scanner.nextInt();
+                                System.out.print("Ingrese el nuevo límite de proteínas: ");
+                                int nuevoMaxProtein = scanner.nextInt();
+                                scanner.nextLine(); // Consumir la línea en blanco
+                                dieta.setMaxFats(nuevoMaxFats);
+                                dieta.setMaxCarbs(nuevoMaxCarbs);
+                                dieta.setMaxProtein(nuevoMaxProtein);
+                                break;
+                            default:
+                                System.out.println("Opción no válida.");
+                        }
+                    } else {
+                        System.out.println("Primero debe crear una dieta.");
+                    }
+                    break;
+                case 6:
+                    salir = true;
+                    System.out.println("¡Hasta luego!");
+                    break;
             }
         }
     }
