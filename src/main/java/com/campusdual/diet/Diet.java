@@ -21,6 +21,12 @@ La clase dieta tiene que tener las siguientes funcionalidades:
 *
 * */
 
+import com.campusdual.diet.exceptions.MaxCaloriesReachedException;
+import com.campusdual.diet.exceptions.MaxCarbsReachedException;
+import com.campusdual.diet.exceptions.MaxFatsReachedException;
+import com.campusdual.diet.exceptions.MaxProteinsReachedException;
+import com.campusdual.diet.exceptions.MaxValuedReachedException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,15 +79,30 @@ public class Diet {
     }
 
     // Método para agregar alimento y cantidad en gramos a la dieta
-    public void addFood(com.campusdual.diet.Food food, int grams) {
+    public void addFood(Food food, int grams) throws MaxCaloriesReachedException, MaxCarbsReachedException, MaxFatsReachedException, MaxProteinsReachedException {
+
+        // Verifica los límites y lanza excepciones personalizadas si se superan
         if (totalCalories + (food.getCalories(grams)) > maxCalories) {
-            System.out.println("Error: Ha superado el límite de calorías.");
-        } else {
-            totalCalories += food.getCalories(grams);
-            totalCarbs += food.getCarbos() * grams;
-            totalFats += food.getFats() * grams;
-            totalProteins += food.getProteins() * grams;
+            throw new MaxCaloriesReachedException();
         }
+
+        if (totalCarbs + (food.getCarbos() * grams) > maxCarbs) {
+            throw new MaxCarbsReachedException();
+        }
+
+        if (totalFats + (food.getFats() * grams) > maxFats) {
+            throw new MaxFatsReachedException();
+        }
+
+        if (totalProteins + (food.getProteins() * grams) > maxProtein) {
+            throw new MaxProteinsReachedException();
+        }
+
+        // Si no se lanzan excepciones, agrega el alimento a la dieta
+        totalCalories += food.getCalories(grams);
+        totalCarbs += food.getCarbos() * grams;
+        totalFats += food.getFats() * grams;
+        totalProteins += food.getProteins() * grams;
     }
 
     // Total de calorias
