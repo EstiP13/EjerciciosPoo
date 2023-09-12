@@ -1,6 +1,7 @@
 package com.campusdual.ejercicio5;
 
-import com.campusdual.ejemplos.alimentos.Food;
+import com.campusdual.ejercicio5.Food;
+import com.campusdual.ejercicio5.Kb;
 import com.campusdual.ejercicio5.exceptions.MaxCaloriesReachedException;
 import com.campusdual.ejercicio5.exceptions.MaxCarbsReachedException;
 import com.campusdual.ejercicio5.exceptions.MaxFatsReachedException;
@@ -9,6 +10,7 @@ import com.campusdual.ejercicio5.exceptions.MaxProteinsReachedException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class DietProgram {
 
@@ -16,8 +18,18 @@ public class DietProgram {
 
     private List<Food> foodList;
 
+    // Agregamos una lista de dietas con nombres
+    private List<Diet> dietList;
+
     public DietProgram(){
         foodList = new ArrayList<>();
+        dietList = new ArrayList<>();
+    }
+
+    // Método para agregar una dieta a la lista
+    public void addDietToList(Diet diet, String dietName) {
+        diet.setDietName(dietName); // Establece el nombre de la dieta
+        dietList.add(diet); // Agrega la dieta a la lista
     }
 
     private Integer getOption(Integer min,Integer max){
@@ -128,6 +140,60 @@ public class DietProgram {
         }
     }
 
+    // Menú para agregar una dieta a la lista
+    private void addDietToProgram() {
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("Agregar Dieta a la lista");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("Nombre de la dieta:");
+        String dietName = Kb.nextLine();
+
+        Diet newDiet = null;
+
+        // Implementar lógica para crear la dieta según seleccione usuario
+        System.out.println("Escriba una opción para configurar la dieta:");
+        System.out.println("===================================");
+        System.out.println("1-Dieta sin límite");
+        System.out.println("2-Dieta por calorías");
+        System.out.println("3-Dieta por macronutrientes");
+        Integer dietOption = getOption(1, 3); // Ajusta el rango de opciones
+
+        switch (dietOption) {
+            case 1:
+                newDiet = new Diet();
+                System.out.println("Se ha creado una dieta sin límites");
+                break;
+            case 2:
+                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                System.out.println("Escriba número de calorías");
+                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                Integer calories = Kb.forceNextInt();
+                newDiet = new Diet(calories);
+                System.out.println("Se ha creado una dieta con " + calories + " calorías máximas");
+                break;
+            case 3:
+                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                System.out.println("Escriba los macronutrientes");
+                System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                System.out.println("Carbohidratos:");
+                Integer carbs = Kb.forceNextInt();
+                System.out.println("Grasas:");
+                Integer fats = Kb.forceNextInt();
+                System.out.println("Proteínas:");
+                Integer proteins = Kb.forceNextInt();
+                newDiet = new Diet(fats, carbs, proteins);
+                System.out.println("Se ha creado una dieta con Carbohidratos:" + carbs + ", Grasas:" + fats + " ,Proteínas:" + proteins);
+                break;
+        }
+
+        if (newDiet != null) {
+            newDiet.setDietName(dietName); // Establece el nombre de la dieta
+            addDietToList(newDiet, dietName); // Agrega la dieta a la lista con nombre
+            System.out.println("Se ha agregado la dieta a la lista con el nombre: " + dietName);
+        }
+    }
+
+
     private void validateAndAddFoodToDiet(Food food, Integer grams){
         try{
             this.diet.addFood(food,grams);
@@ -154,7 +220,9 @@ public class DietProgram {
         System.out.println("2-Dieta por calorías");
         System.out.println("3-Dieta por macronutrientes");
         System.out.println("4-Dieta por datos personales");
-        Integer option = getOption(1,4);
+        System.out.println("5-Agregar dieta a la lista"); // Nueva opción agregar una dieta
+        Integer option = getOption(1,5); // Ajustamos el rango de opciones
+
         switch (option){
             case 1:
                 this.diet = new Diet();
@@ -195,6 +263,9 @@ public class DietProgram {
                 String sexCharacter = Kb.nextLine();
                 this.diet = new Diet("m".equalsIgnoreCase(sexCharacter),age,height,weight);
                 System.out.println("Se ha creado una dieta de "+this.diet.getMaxCalories()+" calorías máximas");
+                break;
+            case 5:
+                addDietToProgram(); // Llama al método para agregar una dieta
                 break;
         }
     }

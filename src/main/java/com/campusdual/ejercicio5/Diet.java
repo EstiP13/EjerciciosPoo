@@ -4,6 +4,7 @@ import com.campusdual.ejercicio5.exceptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class Diet {
     public static final String OK = "OK";
     public static final String MAX_CALORIES_REBASE = "MAX_CALORIES_REBASE";
@@ -16,6 +17,8 @@ public class Diet {
     private Integer maxFats;
     private Integer maxProteins;
     private List<Intake> intakes;
+    // Almacenar nombre de la dieta
+    private String dietName;
 
     public Diet(){
         this.intakes = new ArrayList<>();
@@ -61,6 +64,11 @@ public class Diet {
                 throw new MaxProteinsReachedException();
             }
         }
+    }
+
+    // Crear método para agregar dieta
+    public void setDietName(String dietName) {
+        this.dietName = dietName;
     }
 
     private String isValidIntake(Intake intake){
