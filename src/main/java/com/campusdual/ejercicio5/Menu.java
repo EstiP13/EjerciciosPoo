@@ -19,5 +19,10 @@ public class Menu {
     public static void main(String[] args) {
         DietProgram program = new DietProgram();
         program.showMenuProgram();
+
+    // Crear un paciente y mostrar su nombre completo
+    Patient paciente = new Patient("Pepito", "Grillo", 30, 175, 70, 'h');
+    String nombreCompleto = paciente.getFullName();
+        System.out.println("Nombre completo del paciente: " + nombreCompleto);
     }
 }

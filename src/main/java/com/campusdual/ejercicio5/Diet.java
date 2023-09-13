@@ -45,6 +45,16 @@ public class Diet {
         this.intakes = new ArrayList<>();
     }
 
+    // Añadimos los métodos para gestionar las dietas
+    public String getDietName() {
+        return dietName;
+    }
+
+    // Crear método para agregar dieta
+    public void setDietName(String dietName) {
+        this.dietName = dietName;
+    }
+
     public void addFood(Food food, Integer grams) throws MaxValuedReachedException {
         Intake intake = new Intake(food,grams);
         String validation = isValidIntake(intake);
@@ -64,11 +74,6 @@ public class Diet {
                 throw new MaxProteinsReachedException();
             }
         }
-    }
-
-    // Crear método para agregar dieta
-    public void setDietName(String dietName) {
-        this.dietName = dietName;
     }
 
     private String isValidIntake(Intake intake){
