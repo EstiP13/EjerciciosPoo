@@ -256,6 +256,17 @@ public class DietProgram {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("Crear/reiniciar dieta");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("Escriba un nombre para la dieta");
+        String dietName = null;
+        boolean dietExists;
+        do {
+            System.out.println("Escriba un nombre para la dieta");
+            dietName = Kb.nextLine();
+            dietExists = dietManager.dietExists(dietName);
+            if (dietExists) {
+                System.out.println("El nombre de la dieta ya existe, escriba otro.");
+            }
+        } while (dietExists);
         System.out.println("Escriba una opción:");
         System.out.println("===================================");
         System.out.println("1-Dieta sin límite");

@@ -1,7 +1,7 @@
 package com.campusdual.ejercicio5;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import com.campusdual.ejercicio5.enums.DayofWeek;
+
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;

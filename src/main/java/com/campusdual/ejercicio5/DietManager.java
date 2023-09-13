@@ -60,4 +60,13 @@ public class DietManager {
     }
 
 
+    // Método para verificar si una dieta con el nombre especificado ya existe
+    public boolean dietExists(String dietName) {
+        for (Diet diet : dietList) {
+            if (diet.getDietName().equalsIgnoreCase(dietName)) {
+                return true; // La dieta ya existe
+            }
+        }
+        return false; // La dieta no existe
+    }
 }
