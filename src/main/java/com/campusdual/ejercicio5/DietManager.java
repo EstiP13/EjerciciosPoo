@@ -90,5 +90,4 @@ public class DietManager {
         }
         return false; // La dieta no existe
     }
-
 }
