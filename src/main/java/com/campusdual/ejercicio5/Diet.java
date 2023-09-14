@@ -76,6 +76,16 @@ public class Diet {
         }
     }
 
+    // Método para actualizar los atributos de una dieta
+    public void dietToUpdate(Diet updatedDiet) {
+        this.setMaxCalories(updatedDiet.getMaxCalories());
+        this.setMaxCarbs(updatedDiet.getMaxCarbs());
+        this.setMaxFats(updatedDiet.getMaxFats());
+        this.setMaxProteins(updatedDiet.getMaxProteins());
+        this.setIntakes(updatedDiet.getIntakes());
+        this.setDietName(updatedDiet.getDietName());
+    }
+
     private String isValidIntake(Intake intake){
         Integer actualCaories = getTotalCalories();
         if(this.maxCalories != null && this.maxCalories < (actualCaories + intake.calculatedCalories())){
@@ -186,4 +196,5 @@ public class Diet {
         }
         return result;
     }
+
 }

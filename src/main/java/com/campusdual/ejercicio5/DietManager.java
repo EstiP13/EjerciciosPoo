@@ -33,6 +33,28 @@ public class DietManager {
         return null; // Retorna null si no se encuentra la dieta
     }
 
+    // Método para actualizar una dieta
+    public void updateDiet(Diet dietToEdit) {
+        // Obtenemos la lista de dietas
+        List<Diet> dietList = getDietList();
+        // Buscamos la dieta que se va a actualizar (por nombre)
+        for (Diet diet : dietList) {
+            if (diet.getDietName().equals(dietToEdit.getDietName())) {
+                // Encuentra la dieta por su nombre y actualiza sus atributos
+                diet.setDietName(dietToEdit.getDietName()); // Actualizar el nombre
+                diet.setMaxCalories(dietToEdit.getMaxCalories()); // Actualizar las calorías máximas
+                diet.setMaxCarbs(dietToEdit.getMaxCarbs()); // Actualizar los carbohidratos máximos
+                diet.setMaxFats(dietToEdit.getMaxFats()); // Actualizar las grasas máximas
+                diet.setMaxProteins(dietToEdit.getMaxProteins()); // Actualizar las proteínas máximas
+                diet.setIntakes(dietToEdit.getIntakes()); // Actualizar la lista de ingestas
+
+                System.out.println("Dieta actualizada exitosamente.");
+                return;
+            }
+        }
+        System.out.println("La dieta no se encontró en la lista de dietas.");
+    }
+
     // Eliminar una dieta de la lista
     public void removeDiet(Diet diet) {
         dietList.remove(diet);
@@ -59,7 +81,6 @@ public class DietManager {
         }
     }
 
-
     // Método para verificar si una dieta con el nombre especificado ya existe
     public boolean dietExists(String dietName) {
         for (Diet diet : dietList) {
@@ -69,4 +90,5 @@ public class DietManager {
         }
         return false; // La dieta no existe
     }
+
 }
