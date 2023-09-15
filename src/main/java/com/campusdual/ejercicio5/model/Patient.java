@@ -1,4 +1,4 @@
-package com.campusdual.ejercicio5;
+package com.campusdual.ejercicio5.model;
 
 import com.campusdual.ejercicio5.enums.DayofWeek;
 

@@ -1,5 +1,7 @@
 package com.campusdual.ejercicio5;
 
+import com.campusdual.ejercicio5.model.Diet;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class DietManager {
     }
 
     // Método para actualizar una dieta
-    public void updateDiet(Diet dietToEdit) {
+    public void updateDiet (Diet dietToEdit) {
         // Obtenemos la lista de dietas
         List<Diet> dietList = getDietList();
         // Buscamos la dieta que se va a actualizar (por nombre)

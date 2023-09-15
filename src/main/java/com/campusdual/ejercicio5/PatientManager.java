@@ -1,5 +1,7 @@
 package com.campusdual.ejercicio5;
 
+import com.campusdual.ejercicio5.model.Patient;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

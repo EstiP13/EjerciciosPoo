@@ -4,6 +4,9 @@ import com.campusdual.ejercicio5.exceptions.MaxCaloriesReachedException;
 import com.campusdual.ejercicio5.exceptions.MaxCarbsReachedException;
 import com.campusdual.ejercicio5.exceptions.MaxFatsReachedException;
 import com.campusdual.ejercicio5.exceptions.MaxProteinsReachedException;
+import com.campusdual.ejercicio5.model.Diet;
+import com.campusdual.ejercicio5.model.Food;
+import com.campusdual.ejercicio5.model.Patient;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
