@@ -42,7 +42,7 @@ public class PatientManager {
     }
 
     // Método para actualizar la información de un paciente existente
-    public void updatePatientInfo(Patient patient, String name, String lastName, int weight, int height, int age, char gender) {
+    public void updatePatient(Patient patient, String name, String lastName, int weight, int height, int age, char gender) {
         // Verifica si el paciente existe en la lista
         if (patientList.contains(patient)) {
             // Actualiza la información del paciente
