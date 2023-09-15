@@ -41,11 +41,6 @@ public class PatientManager {
         return null; // Retorna null si el paciente no se encuentra
     }
 
-    // Método para ordenar la lista de pacientes usando un comparador
-    public void sortPatients(Comparator<Patient> comparator) {
-        patientList.sort(comparator);
-    }
-
     // Método para actualizar la información de un paciente existente
     public void updatePatientInfo(Patient patient, String name, String lastName, int weight, int height, int age, char gender) {
         // Verifica si el paciente existe en la lista
