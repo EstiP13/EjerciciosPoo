@@ -77,7 +77,7 @@ public class Diet {
     }
 
     // Método para actualizar los atributos de una dieta
-    public void dietToUpdate(Diet updatedDiet) {
+    public void updateDiet(Diet updatedDiet) {
         this.setMaxCalories(updatedDiet.getMaxCalories());
         this.setMaxCarbs(updatedDiet.getMaxCarbs());
         this.setMaxFats(updatedDiet.getMaxFats());

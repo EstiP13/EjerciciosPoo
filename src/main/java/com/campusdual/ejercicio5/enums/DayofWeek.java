@@ -9,6 +9,7 @@ public enum DayofWeek {
     SABADO("Sábado"),
     DOMINGO("Domingo");
 
+
     private final String displayName;
 
     private DayofWeek(String displayName) {
