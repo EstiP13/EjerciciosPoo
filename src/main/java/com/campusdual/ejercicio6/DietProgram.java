@@ -353,7 +353,7 @@ public class DietProgram {
     // CREAR MÉTODOS PARA GUARDAR Y CARGAR ALIMENTOS
 
     private void saveFoodToFile(List<Food> foods) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("foods.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("foods.txt"))) {
             oos.writeObject(foods);
         } catch (IOException e) {
             System.out.println("Error al guardar alimento: " + e.getMessage());
@@ -363,7 +363,7 @@ public class DietProgram {
     private List<Food> loadFoodFromFile() {
         List<Food> foods = new ArrayList<>();
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("foods.dat"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("foods.txt"))) {
             foods = (List<Food>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error al cargar alimento: " + e.getMessage());
@@ -472,6 +472,10 @@ public class DietProgram {
         } while (option != 5);
     }
 
+
+
+    // MODIFICAR EL MENU PARA GUARDAR Y CARGAR DESDE ARCHIVO
+
     private void createUser() {
         System.out.println("············································");
         System.out.println("···   REGISTRO DE PACIENTES: NUEVA ALTA  ···");
@@ -505,6 +509,27 @@ public class DietProgram {
             System.out.println("Paciente " + newName + " " + newSurname + " ha sido añadido correctamente");
         }
     }
+
+
+    // MÉTODOS PARA GUARDAR Y CREAR ARCHIVOS DE UN FICHERO
+
+    private void saveUsersToFile() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("users.txt"))) {
+            out.writeObject(userList);
+        } catch (IOException e) {
+            System.out.println("Error al guardar usuarios en el fichero.");
+        }
+    }
+
+    private void loadUsersFromFile() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("users.txt"))) {
+            userList = (List<User>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar usuarios desde el fichero.");
+        }
+    }
+
+
 
     private void showUsersDetails() {
         System.out.println("············································");
