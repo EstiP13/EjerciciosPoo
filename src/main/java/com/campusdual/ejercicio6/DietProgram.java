@@ -585,8 +585,6 @@ public class DietProgram {
         System.out.println("Dieta " + selectedDiet.getName() + " asignada para el día " + selectedDay.name());
     }
 
-}
-
 
 //TODO--> otra opción. revisar
 
