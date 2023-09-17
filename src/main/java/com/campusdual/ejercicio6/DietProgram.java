@@ -11,6 +11,7 @@ import com.campusdual.ejercicio6.enums.Gender;
 
 
 import java.util.*;
+import java.io.*; // para cargar excepciones ficheros
 
 public class DietProgram {
     private Diet diet = null;
@@ -260,16 +261,19 @@ public class DietProgram {
         }
         Diet selectedDiet = this.diet;
         System.out.println("···································");
-        System.out.println("    Agregar Alimentos a la dieta   ");
+        System.out.println("    Agregar Alimentos a la dieta   "); // GESTOR DE ALIMENTOS ??
         System.out.println("···································");
         System.out.println("Escriba una opción:");
         System.out.println("===================================");
-        System.out.println("1- Agregar un nuevo alimento");
+        System.out.println("1- Agregar un nuevo alimento al archivo"); // SE GUARDE EN EL ARCHIVO
         System.out.println("2- Agregar un alimento ya existente");
+        System.out.println("3- Listar y modificar alimentos del archivo");
+        System.out.println("4- Eliminar un alimento del archivo");
+        System.out.println("5- Volver al menú principal");
 
-        Integer option = Kb.getOption(1, 2);
+        Integer option = Kb.getOption(1, 5);
         switch (option) {
-            case 1:
+            case 1: // addNewFoodToFile()
                 System.out.println("···································");
                 System.out.println("       Datos de nuevo alimento     ");
                 System.out.println("···································");
@@ -285,10 +289,16 @@ public class DietProgram {
                 Integer grams = Kb.forceNextInt();
 
                 Food newFood = new Food(name, carbs, fats, proteins);
+                foodList.add(newFood); // Agregamos el nuevo alimento a foodList.
+                saveFoodToFile(foodList); // Actualizamos el fichero con el nuevo alimento.
+
                 this.diet = selectedDiet;
                 validateAndAddFoodToDiet(newFood, grams);
                 break;
-            case 2:
+
+            case 2: // addExistingFoodToDiet();
+                foodList = loadFoodFromFile(); // Cargamos la lista de alimentos desde el archivo
+
                 if (foodList.size() == 0) {
                     System.out.println("Para agregar un alimento existente, tienen que existir alimentos previos");
                     return;
@@ -310,12 +320,60 @@ public class DietProgram {
                 Food storedFood = foodList.get(element - 1);
                 System.out.println("indique el número de gramos de " + storedFood.getName());
                 Integer foodGrams = Kb.forceNextInt();
+
+                saveFoodToFile(foodList); // Guardamos la lista actualizada con las modificaciones en el alimento
+
                 this.diet = selectedDiet;
                 validateAndAddFoodToDiet(storedFood, foodGrams);
                 break;
+
+            case 3: // listAndModifyFood();
+                foodList = loadFoodFromFile(); // Cargamos la lista de alimentos desde el archivo
+
+                for (int index = 0; index < foodList.size(); index++) {
+                    System.out.println((index + 1) + "- " + foodList.get(index).getName());
+                }
+
+                System.out.println("Elija el alimento que desea modificar o 0 para volver:");
+                int foodIndex = Kb.getOption(0, foodList.size()) - 1;
+
+                if (foodIndex >= 0) {
+                    Food foodToModify = foodList.get(foodIndex);
+
+                    // OPCIONES DE MODIFICACION ALIMENTO
+
+                    saveFoodToFile(foodList); // Guardamos los cambios en el archivo
+                }
+
         }
         showDietDetails();
     }
+
+
+    // CREAR MÉTODOS PARA GUARDAR Y CARGAR ALIMENTOS
+
+    private void saveFoodToFile(List<Food> foods) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("foods.dat"))) {
+            oos.writeObject(foods);
+        } catch (IOException e) {
+            System.out.println("Error al guardar alimento: " + e.getMessage());
+        }
+    }
+
+    private List<Food> loadFoodFromFile() {
+        List<Food> foods = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("foods.dat"))) {
+            foods = (List<Food>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al cargar alimento: " + e.getMessage());
+        }
+        return foods;
+    }
+
+
+
+
 
     private void validateAndAddFoodToDiet(Food food, Integer grams) {
         try {
